@@ -1,12 +1,14 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Container, Sprite, useTick } from '@pixi/react';
 import externalCircle from '../../../../assets/roulette/external-circle.png';
 import mediumCircle from '../../../../assets/roulette/medium-circle.png';
 import internalCircle from '../../../../assets/roulette/internal-circle.png';
 import arrow from '../../../../assets/roulette/arrow.png';
 import wheel from '../../../../assets/roulette/wheel.png';
-import { useAppSelector } from '../../../../app/store/hook';
-import { selectRouletteSpinSpeed } from '../../slices/rouletteSpinSlice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hook';
+import { selectRouletteSpinRotationInProgress, selectRouletteSpinSpeed, setRouletteSpinDegreesRotation, setRouletteSpinSpeed } from '../../slices/rouletteSpinSlice';
+import { radianToDegrees } from '../../../../shared/lib/degrees/radianToDegrees';
+import { RouletteLifecycle, setRouletteLifecycle } from '../../slices/rouletteSlice';
 
 interface IRouletteSpinPXProps {
 
@@ -18,19 +20,33 @@ const POSITION_SPIN = {
 }
 
 const POSITION_ARROW = {
-  x: 290,
-  y: 220,
-  rotation: 0.4
+  x: 200,
+  y: 170,
+  rotation: -0.45
 }
 
-const RouletteSpinPX:FC<IRouletteSpinPXProps> = ({}) => {
+const RouletteSpinPX: FC<IRouletteSpinPXProps> = ({ }) => {
   const speed = useAppSelector(selectRouletteSpinSpeed);
+  const dispatch = useAppDispatch();
+  const rotationInProgress = useAppSelector(selectRouletteSpinRotationInProgress)
   const [rotationMedium, setRotationMedium] = useState(0);
   const [rotationWheel, setRotationWheel] = useState(0);
   useTick((delta) => {
-    const rotation = delta * speed;
-    setRotationMedium((prev) => prev + rotation);
-    setRotationWheel((prev) => prev - rotation);
+    if (rotationInProgress){
+      const rotation = delta * speed;
+      setRotationMedium((prev) => prev + rotation);
+      setRotationWheel((prev) => prev - rotation);
+      if (speed < 0.005) {
+        // console.log(rotationMedium % Math.PI * 2)
+        dispatch(setRouletteSpinSpeed(0))
+        dispatch(setRouletteSpinDegreesRotation(
+          radianToDegrees(rotationMedium % (Math.PI * 2))
+        ))
+        dispatch(setRouletteLifecycle(RouletteLifecycle.FINISHED))
+      } else {
+        dispatch(setRouletteSpinSpeed(null))
+      }
+    }
   })
   return (
     <Container>
