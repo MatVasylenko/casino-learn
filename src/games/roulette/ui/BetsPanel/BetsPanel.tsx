@@ -1,11 +1,14 @@
-import React, { FC } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hook';
-import { selectActiveNumber, setCurrentBet } from '../../slices/rouletteSlice';
+import { FC } from 'react';
+import { useAppDispatch } from '../../../../app/store/hook';
+import { setCurrentBet } from '../../slices/rouletteSlice';
 import bet50 from '../../../../assets/roulette/bet-50.png';
 import bet100 from '../../../../assets/roulette/bet-100.png';
 import bet200 from '../../../../assets/roulette/bet-200.png';
 import bet400 from '../../../../assets/roulette/bet-400.png';
 import bet800 from '../../../../assets/roulette/bet-800.png';
+import styles from './betsPanel.module.css';
+import { sound } from '@pixi/sound';
+import { SOUNDS_ROULETTE } from '../../scenes/GameScene/config';
 
 interface IBetsPanelProps {
 
@@ -37,12 +40,13 @@ const BETS = [
 const BetsPanel: FC<IBetsPanelProps> = ({ }) => {
   const dispatch = useAppDispatch();
   const pickBet = (value: number) => {
+    sound.play(SOUNDS_ROULETTE.BET);
     dispatch(setCurrentBet(value))
   }
 
   return (
-    <div>
-      <div className="flex gap-4 items-center">
+    <div className={styles.wrapper}>
+      <div className="flex gap-5 items-center">
         {BETS.map(({ value, image }) => (
           <div
             onClick={() => pickBet(value)}

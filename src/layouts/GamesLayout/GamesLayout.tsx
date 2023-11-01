@@ -7,8 +7,8 @@ interface IGamesLayoutProps {
 
 const GamesLayout:FC<IGamesLayoutProps> = ({}) => {
   return (
-    <div>
-      <div>Header Games</div>
+    <div className="w-full h-screen">
+      {/* <div>Header Games</div> */}
       <Outlet />
     </div>
   )
