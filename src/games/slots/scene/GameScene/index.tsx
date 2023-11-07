@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import SlotGameSceneUI from './GameSceneUI';
 import { Stage } from '../../../../app/config/contextBridge';
+import RowsPX from '../../pixi/rows/RowsPX';
 
 interface ISlotGameSceneProps {
 
 };
 
-const [width, height] = [1000, 500]
+const [width, height] = [1150, 500]
 
 const SlotGameScene: FC<ISlotGameSceneProps> = ({ }) => {
   return (
@@ -19,7 +20,7 @@ const SlotGameScene: FC<ISlotGameSceneProps> = ({ }) => {
             background: 'green'
           }}
         >
-
+          <RowsPX />
         </Stage>
       </SlotGameSceneUI>
     </div>
