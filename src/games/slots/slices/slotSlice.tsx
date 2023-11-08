@@ -59,7 +59,7 @@ const slotSlice = createSlice({
       }));
       const arrayActiveItemsID = state.rows.map(row => row.activeItemID);
       const firstItem = arrayActiveItemsID[0];
-
+      console.log(state.rows)
       const win = arrayActiveItemsID.every((elem) => elem === firstItem);
       state.winOrLose = win ? SlotWinOrLose.WIN : SlotWinOrLose.LOSE
     }
@@ -68,6 +68,7 @@ const slotSlice = createSlice({
 
 export const {
   setSlotLifecycle,
+  startSlot,
 } = slotSlice.actions;
 
 export const selectSlotLifecycle = (state: RootState) => state.slot.lifecycle;

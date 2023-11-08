@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useAppSelector } from '../../../../app/store/hook';
-import { SlotLifecycle, selectSlotLifecycle } from '../../slices/slotSlice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hook';
+import { SlotLifecycle, selectSlotLifecycle, startSlot } from '../../slices/slotSlice';
 
 interface ISlotEventPanelProps {
 
@@ -8,8 +8,9 @@ interface ISlotEventPanelProps {
 
 const SlotEventPanel:FC<ISlotEventPanelProps> = ({}) => {
   const lifecycle = useAppSelector(selectSlotLifecycle);
+  const dispatch = useAppDispatch();
   const onStart = () => {
-
+    dispatch(startSlot())
   }
   return (
     <div>
