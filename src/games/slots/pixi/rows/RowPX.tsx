@@ -10,7 +10,7 @@ interface IRowPXProps {
 };
 
 const ITEM_HEIGHT = 100;
-const SPEED = 20;
+const SPEED = 0;
 
 const RowPX: FC<IRowPXProps> = ({
   slotRow,
