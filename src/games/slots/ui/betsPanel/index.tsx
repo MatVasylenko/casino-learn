@@ -5,6 +5,7 @@ import bet200 from '../../../../assets/roulette/bet-200.png';
 import bet400 from '../../../../assets/roulette/bet-400.png';
 import bet800 from '../../../../assets/roulette/bet-800.png';
 import { useAppDispatch } from '../../../../app/store/hook';
+import { setSlotCurrentBet } from '../../slices/slotSlice';
 
 interface ISlotBetsPanelProps {
 
@@ -38,7 +39,7 @@ const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({ }) => {
   const dispatch = useAppDispatch();
   const pickBet = (value: number) => {
     // sound.play(SOUNDS_ROULETTE.BET);
-    // dispatch(setCurrentBet(value))
+    dispatch(setSlotCurrentBet(value))
   }
   return (
     <div>

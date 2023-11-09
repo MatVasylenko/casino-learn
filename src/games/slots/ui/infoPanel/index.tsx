@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
+import { useAppSelector } from '../../../../app/store/hook';
+import { selectSlotCurrentBet } from '../../slices/slotSlice';
 
 interface ISlotInfoPanelProps {
 
 };
 
 const SlotInfoPanel: FC<ISlotInfoPanelProps> = ({ }) => {
+  const currentBet = useAppSelector(selectSlotCurrentBet);
   return (
     <div>
       <div>
@@ -13,7 +16,7 @@ const SlotInfoPanel: FC<ISlotInfoPanelProps> = ({ }) => {
       </div>
       <div>
         <div>Bet: </div>
-        <div>300</div>
+        <div>{currentBet}</div>
       </div>
     </div>
   )
