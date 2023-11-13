@@ -43,7 +43,7 @@ const SlotBetsPanel: FC<ISlotBetsPanelProps> = ({ }) => {
   }
   return (
     <div>
-      <div className="flex flex-col gap-3 items-center">
+      <div className="flex gap-3 items-center">
         {BETS.map(({ value, image }) => (
           <div
             onClick={() => pickBet(value)}

@@ -3,6 +3,7 @@ import { useAppSelector } from '../../../../app/store/hook';
 import { SlotLifecycle, selectSlotCurrentBet, selectSlotLifecycle } from '../../slices/slotSlice';
 import { selectBalance } from '../../../../entities/wallet/slices/walletSlice';
 import { useEffect } from 'react';
+import SlotScoreWindow from '../../shared/scoreWindow/ScoreWindow';
 
 interface ISlotInfoPanelProps {
 
@@ -19,15 +20,17 @@ const SlotInfoPanel: FC<ISlotInfoPanelProps> = ({ }) => {
     if (isInfo) setDisplayBalance(balance)
   }, [isInfo, balance])
   return (
-    <div>
-      <div>
-        <div>Balance: </div>
-        <div>{displayBalance ?? 0}</div>
-      </div>
-      <div>
-        <div>Bet: </div>
-        <div>{currentBet}</div>
-      </div>
+    <div className="flex flex-col gap-8">
+      <SlotScoreWindow
+        icon="balance"
+      >
+        {displayBalance ?? 0}
+      </SlotScoreWindow>
+      <SlotScoreWindow
+        icon="bets"
+      >
+        {currentBet ?? 0}
+      </SlotScoreWindow>
     </div>
   )
 };
