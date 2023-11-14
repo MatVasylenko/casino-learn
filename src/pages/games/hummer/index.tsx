@@ -7,11 +7,13 @@ interface IHummerPageProps {
 
 };
 
-const HummerPage:FC<IHummerPageProps> = ({}) => {
+const HummerPage: FC<IHummerPageProps> = ({ }) => {
   return (
-    <div>
-      <Link to={ROUTES.main}>return to Main Page</Link>
-      <HummerCore />
+    <div className="h-screen flex justify-center items-center">
+      <div>
+        <Link to={ROUTES.main}>return to Main Page</Link>
+        <HummerCore />
+      </div>
     </div>
   )
 };

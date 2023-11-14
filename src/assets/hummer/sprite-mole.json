@@ -1,0 +1,39 @@
+{"frames": {
+
+"mole-001.svg":
+{
+	"frame": {"x":0,"y":69,"w":167,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":70},
+	"sourceSize": {"w":167,"h":70}
+},
+"mole-002.svg":
+{
+	"frame": {"x":0,"y":139,"w":168,"h":103},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":168,"h":103},
+	"sourceSize": {"w":168,"h":103}
+},
+"mole-003.svg":
+{
+	"frame": {"x":0,"y":242,"w":167,"h":124},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":124},
+	"sourceSize": {"w":167,"h":124}
+}},
+"animations": {
+	"mole": ["mole-001.svg","mole-002.svg","mole-003.svg"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "sprite-mole.png",
+	"format": "RGBA8888",
+	"size": {"w":168,"h":366},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9eeb5a7e8cd562e002947bd7ebdd842e:29dc781f39cc13b950ff5ebbdbfb7b77:57c82b664a771f6cb50dd7875b4df8a8$"
+}
+}
