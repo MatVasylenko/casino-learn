@@ -1,21 +1,38 @@
 import { Sprite } from '@pixi/react';
 import React, { FC } from 'react';
-import { IHummerPit } from '../../../slices/models/Pit';
-import pitEmpty from '../../../../../assets/hummer/mole-001.svg';
+import { HummerPitState, IHummerPit } from '../../../slices/models/Pit';
+import pitEmpty from '../../../../../assets/hummer/item.svg';
+import * as PIXI from 'pixi.js';
+import HummerAnimatePitPX from './AnimatePitPX';
 
 interface IHummerPitPXProps extends IHummerPit {
+  frames: PIXI.Texture<PIXI.Resource>[];
+}
 
-};
-
-const HummerPitPX:FC<IHummerPitPXProps> = ({
+const HummerPitPX: FC<IHummerPitPXProps> = ({
   position,
+  state,
+  frames,
 }) => {
   return (
-    <Sprite
-      position={position}
-      image={pitEmpty}
-      anchor={0.5}
-    />
+    <>
+      {state === HummerPitState.EMPTY && (
+        <Sprite
+          position={position}
+          image={pitEmpty}
+          anchor={{
+            x: 0.5,
+            y: 1,
+          }}
+        />
+      )}
+      {state === HummerPitState.PROCESSING && (
+        <HummerAnimatePitPX
+          position={position}
+          frames={frames}
+        />
+      )}
+    </>
   )
 };
 
