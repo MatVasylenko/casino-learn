@@ -1,14 +1,14 @@
 import { Container, Sprite } from '@pixi/react';
 import React, { FC, useEffect } from 'react';
 import bg from '../../../../../assets/hummer/bg.jpg';
-import { MOCK_PITS } from '../../../slices/models/Pit';
+import { HummerPitState, MOCK_PITS } from '../../../slices/models/Pit';
 import HummerPitPX from './PitPX';
 import * as PIXI from 'pixi.js';
 
 import spritesheet from '../../../../../assets/hummer/sprite-mole.json';
 import { useState } from 'react';
-import { useAppSelector } from '../../../../../app/store/hook';
-import { selectHummerPits } from '../../../slices/hummerCoreSlice';
+import { useAppDispatch, useAppSelector } from '../../../../../app/store/hook';
+import { selectHummerPits, setHummerPits } from '../../../slices/hummerCoreSlice';
 
 interface IPitsPXProps {
 
@@ -18,10 +18,18 @@ const PitsPX:FC<IPitsPXProps> = ({}) => {
   const [frames, setFrames] = useState<PIXI.Texture<PIXI.Resource>[]>();
   const pits = useAppSelector(selectHummerPits);
 
-  useEffect(() => {
-    setInterval(() => {
+  const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    const algoritmInternal = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * 9);
+      dispatch(setHummerPits({
+        currentIndex: randomIndex,
+        state: HummerPitState.PROCESSING
+      }))
     }, 2000);
+
+    return () => clearInterval(algoritmInternal);
   }, []);
 
   useEffect(() => {
