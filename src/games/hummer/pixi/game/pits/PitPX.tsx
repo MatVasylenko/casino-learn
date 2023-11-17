@@ -6,13 +6,15 @@ import * as PIXI from 'pixi.js';
 import HummerAnimatePitPX from './AnimatePitPX';
 
 interface IHummerPitPXProps extends IHummerPit {
-  frames: PIXI.Texture<PIXI.Resource>[];
+  frames?: PIXI.Texture<PIXI.Resource>[];
+  idx: number;
 }
 
 const HummerPitPX: FC<IHummerPitPXProps> = ({
   position,
   state,
   frames,
+  idx,
 }) => {
   return (
     <>
@@ -30,6 +32,7 @@ const HummerPitPX: FC<IHummerPitPXProps> = ({
         <HummerAnimatePitPX
           position={position}
           frames={frames}
+          idx={idx}
         />
       )}
     </>

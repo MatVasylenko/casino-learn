@@ -7,14 +7,21 @@ export enum HummerScenes {
   GAME = 'game'
 }
 
+const DEFAULT_SCORE = 1000;
+const START_HEALTH = 3;
+
 interface IHummer {
   scene: `${HummerScenes}`;
   pits: IHummerPit[];
+  score: number;
+  health: number;
 }
 
 const initialState: IHummer = {
   scene: HummerScenes.MENU,
   pits: MOCK_PITS,
+  score: DEFAULT_SCORE,
+  health: START_HEALTH,
 }
 
 const hummerCoreSlice = createSlice({
@@ -51,5 +58,7 @@ export const {
 
 export const selectHummerScene = (state:RootState) => state.hummerCoreSlice.scene;
 export const selectHummerPits = (state:RootState) => state.hummerCoreSlice.pits;
+export const selectHummerHealth = (state:RootState) => state.hummerCoreSlice.health;
+export const selectHummerScore = (state:RootState) => state.hummerCoreSlice.score;
 
 export default hummerCoreSlice.reducer;

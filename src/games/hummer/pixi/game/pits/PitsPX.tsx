@@ -50,6 +50,7 @@ const PitsPX:FC<IPitsPXProps> = ({}) => {
         <HummerPitPX
           key={`pit${idx}`}
           frames={frames}
+          idx={idx}
           {...pit}
         />
       ))}
